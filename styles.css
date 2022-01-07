@@ -1,0 +1,78 @@
+:root{
+    --grid-rows: 1;
+    --grid-columns: 1;
+    --color-background: white;
+}
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+body{
+    height: 100vh;
+
+}
+
+header{
+    text-align: center;
+    font-size: 30px;
+}
+
+.container{
+    display: flex;
+    height: 90vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.grid-container{
+    display:grid;
+    position: fixed;
+    height: auto;
+    width: 35vw;
+    align-items: center;
+    background-color: var(--color-background);
+    
+    
+    grid-template-rows: repeat(var(--grid-rows), 1fr);
+    grid-template-columns: repeat(var(--grid-columns), 1fr);
+}
+
+.grid-cells{
+    border: 1px solid gainsboro;
+    
+    aspect-ratio: 1;
+    
+    
+    
+}
+
+.painted{
+    background-color: white;
+
+
+}
+.left-side{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   
+    height: 90vh;
+    flex:1;
+    
+    border: 1px solid red;
+    
+}
+
+.btn{
+    margin: 20px;
+    padding:10px 20px;
+}
+
+
