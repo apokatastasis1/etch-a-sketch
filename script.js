@@ -1,24 +1,67 @@
 let activeColor = "#000000";
 let borderColor = activeColor;
+let colorBackup = "#000000";
+let hexCharacters = ["0","1","2","3","4","5","6","7","8","9", "A", "B", "C", "D", "E", "F"];
+let isRainbowActive = false;
+console.log(hexCharacters);
 //"gainsboro";
 
 
 const gridContainer = document.querySelector(".grid-container");
 const clearBtn = document.querySelector(".clear");
-const eraser = document.querySelector(".eraser");
+const eraserBtn = document.querySelector(".eraser");
 const colorPicker = document.querySelector("#color-pick");
+const singleColorBtn = document.querySelector(".single-color");
+const rainbowBtn = document.querySelector(".rainbow");
+
 
 
 
 //gridContainer.addEventListener('click', paint);
 clearBtn.addEventListener('click', clear);
 colorPicker.addEventListener('change', updateColor);
-eraser.addEventListener('click', erase);
+eraserBtn.addEventListener('click', erase);
+singleColorBtn.addEventListener('click', singleColor);
+rainbowBtn.addEventListener('click', ()=>{
+    isRainbowActive = true;
+} );
+
+
+
+function singleColor(){
+    isRainbowActive = false;
+    activeColor = colorBackup;
+    borderColor = colorBackup;
+}
+
+
+
+
+
+function randomColor(){
+    let hexNum = "#";
+    let index;
+    let num;
+    for(let i = 0; i<6;i++){
+        index = randomNum();
+        num = hexCharacters[index];
+        hexNum+= num;
+    }
+    
+    return hexNum;
+    
+}
+
+
+function randomNum() {
+    return Math.floor(Math.random() * 16);
+  }
 
 function erase(){
+    isRainbowActive = false;
     activeColor = "white";
     borderColor = "gainsboro";
-    colorPicker.value = "#FFFFFF"
+    //colorPicker.value = "#FFFFFF"
 }
 
 
@@ -29,6 +72,7 @@ function erase(){
 function updateColor(e){
     activeColor = e.target.value;
     borderColor = e.target.value;
+    colorBackup = e.target.value;
     console.log(e.target.value);
 }
 
@@ -49,16 +93,39 @@ function makeGrid(rows, columns){
 
 
 function paint(e){
-    
-    e.target.style.backgroundColor = activeColor;
-   
-    e.target.style.borderBottom = `1px solid ${borderColor}`;
-    e.target.style.borderRight = `1px solid ${borderColor}`;
-    
-    
+    if(isRainbowActive){
+        hexNum = randomColor();
+        e.target.style.backgroundColor = hexNum
+        e.target.style.borderBottom = `1px solid ${hexNum}`;
+        e.target.style.borderRight = `1px solid ${hexNum}`;
+        console.log("rainbow is active");
+    }else{
+
+        e.target.style.backgroundColor = activeColor;
+        e.target.style.borderBottom = `1px solid ${borderColor}`;
+        e.target.style.borderRight = `1px solid ${borderColor}`;
+    }
 
 }
 
+function paintOnHover(e){
+    if (e.buttons > 0){
+        if(isRainbowActive){
+            hexNum = randomColor();
+            e.target.style.backgroundColor = hexNum
+            e.target.style.borderBottom = `1px solid ${hexNum}`;
+            e.target.style.borderRight = `1px solid ${hexNum}`;
+            console.log("rainbow is active");
+        }else{
+    
+            e.target.style.backgroundColor = activeColor;
+            e.target.style.borderBottom = `1px solid ${borderColor}`;
+            e.target.style.borderRight = `1px solid ${borderColor}`;
+        }
+    }
+    
+
+}
 
 
 
@@ -86,7 +153,8 @@ makeGrid(20,20);
 const gridItems = document.querySelectorAll(".grid-cells");
 
 gridItems.forEach(elem=>{
-    elem.addEventListener('click', paint);
+    elem.addEventListener('mousedown', paint);
+    elem.addEventListener('mouseenter', paintOnHover);
 })
 
 //apretar boton borrar y que borre
