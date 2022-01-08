@@ -39,13 +39,16 @@ header{
     align-items: center;
     background-color: var(--color-background);
     
+    border-left: 1px solid gainsboro;
+    border-top:1px solid gainsboro;;
+    
     
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-columns), 1fr);
 }
 
 .grid-cells{
-    border: 1px solid gainsboro;
+    /*border: 1px solid gainsboro;*/
     
     aspect-ratio: 1;
     
@@ -70,9 +73,19 @@ header{
     
 }
 
+#color-pick{
+    margin-left: 20px;
+}
+
+
 .btn{
     margin: 20px;
     padding:10px 20px;
+}
+
+.gray-border{
+    border-bottom: 1px solid gainsboro;
+    border-right: 1px solid gainsboro ;
 }
 
 
