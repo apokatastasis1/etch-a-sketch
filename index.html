@@ -9,24 +9,53 @@
     <script src="./script.js" defer></script>
 
 </head>
-<body>
+<body ondragstart="return false;">
     
     <header>Etch a Sketch</header>
-    
+   
+  
     <div class="container">
         <div class="left-side">
+            <div class="clear-container">
+                <button class="btn clear">Clear</button>
+                <button class="btn eraser">Eraser</button>
+            </div>
             
-            <label for="color-pick">Color:</label>
-            <input type="color" id="color-pick">
-            <button class="btn single-color">Single color</button>
-            <button class="btn rainbow">Rainbow</button>
-            <button class="btn shadow">Shadow</button>
-            <button class="btn light">Light</button>
-            <button class="btn eraser">Eraser</button>
-            <button class="btn clear">Clear</button>
+            
+            <div class="section inline-button colorContainer">
+                <label for="color-pick">Select a color</label>
+                <input type="color" id="color-pick" value="#000000">
+            </div>
+            
+            <div class="section inline-button">
+                
+                <button class="btn single-color">Single color</button>
+                <button class="btn rainbow">Rainbow</button>
+               
+                
+            </div>
+            
+            
+            <div class="section inline-button">
+                <button class="btn shadow">Shadow</button>
+                <button class="btn light">Light</button>
+            </div>
+
+            <div class="section range-slider">
+                <input id="inputRange" type="range" min="0" max="50" value="20">
+                <span class="range-value">20x20</span>
+            </div>
+            
+            
+            
+            
+            
+            
         </div>
         
-        <div class="grid-container"></div>    
+        <div class="grid-container"></div>  
+        
+         
     </div>
     
 </body>

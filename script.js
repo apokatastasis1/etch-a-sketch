@@ -1,3 +1,4 @@
+let gridSize = 20;
 let activeColor = "#000000";
 let borderColor = activeColor;
 let colorBackup = "#000000";
@@ -18,7 +19,10 @@ const singleColorBtn = document.querySelector(".single-color");
 const rainbowBtn = document.querySelector(".rainbow");
 const shadowBtn = document.querySelector(".shadow");
 const lightBtn = document.querySelector(".light");
-
+const inputRange = document.querySelector("#inputRange");
+const rangeValue = document.querySelector(".range-value");
+console.log(rangeValue);
+console.log(rangeValue.textContent);
 
 
 
@@ -35,6 +39,17 @@ lightBtn.addEventListener('click', activateLightMode);
 //Function to convert rgb to hex
 
 let rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
+
+inputRange.addEventListener('input', ()=>{
+    
+    rangeValue.textContent = `${inputRange.value} x ${inputRange.value}`;
+})
+inputRange.addEventListener('change', ()=>{
+    
+    gridSize = inputRange.value;
+    
+    console.log(inputRange.value);
+})
 
 function activateRainbowMode(){
     isRainbowActive = true;
@@ -95,6 +110,8 @@ function randomNum() {
 function erase(){
     isRainbowActive = false;
     isShadowActive = false;
+    isLightActive = false;
+    isSingleColorActive = true;
     activeColor = "white";
     borderColor = "gainsboro";
     //colorPicker.value = "#FFFFFF"
@@ -127,27 +144,6 @@ function makeGrid(rows, columns){
 
     };
 }
-
-
-
-/*
-
-function paint(e){
-    if(isRainbowActive){
-        hexNum = randomColor();
-        e.target.style.backgroundColor = hexNum
-        e.target.style.borderBottom = `1px solid ${hexNum}`;
-        e.target.style.borderRight = `1px solid ${hexNum}`;
-        console.log("rainbow is active");
-    }else{
-
-        e.target.style.backgroundColor = activeColor;
-        e.target.style.borderBottom = `1px solid ${borderColor}`;
-        e.target.style.borderRight = `1px solid ${borderColor}`;
-    }
-
-}
-*/
 
 function paintOnHover(e){
     if (e.buttons > 0){
