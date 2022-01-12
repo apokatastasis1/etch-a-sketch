@@ -21,6 +21,7 @@ const shadowBtn = document.querySelector(".shadow");
 const lightBtn = document.querySelector(".light");
 const inputRange = document.querySelector("#inputRange");
 const rangeValue = document.querySelector(".range-value");
+
 console.log(rangeValue);
 console.log(rangeValue.textContent);
 
@@ -44,12 +45,7 @@ inputRange.addEventListener('input', ()=>{
     
     rangeValue.textContent = `${inputRange.value} x ${inputRange.value}`;
 })
-inputRange.addEventListener('change', ()=>{
-    
-    gridSize = inputRange.value;
-    
-    console.log(inputRange.value);
-})
+
 
 function activateRainbowMode(){
     isRainbowActive = true;
@@ -137,12 +133,15 @@ function updateColor(e){
 function makeGrid(rows, columns){
     gridContainer.style.setProperty("--grid-rows", rows);
     gridContainer.style.setProperty("--grid-columns", columns);
-    for(let i=0; i< (rows*columns);i++){
-    let cell = document.createElement("div");
-    cell.setAttribute('draggable', 'false');
-    gridContainer.appendChild(cell).className = "grid-cells gray-border";
+        for(let i=0; i< (rows*columns);i++){
 
-    };
+            let cell = document.createElement("div");
+            cell.setAttribute('draggable', 'false');
+            gridContainer.appendChild(cell).className = "grid-cells gray-border";
+        
+        };
+
+        console.log(gridSize);
 }
 
 function paintOnHover(e){
@@ -249,6 +248,7 @@ function clear(){
         elem.setAttribute('style', 'background-color: white');
 
     });
+   
     updateColor();
     
 }
@@ -260,12 +260,39 @@ function clear(){
 
 makeGrid(20,20);
 
-const gridItems = document.querySelectorAll(".grid-cells");
+let gridItems = document.querySelectorAll(".grid-cells");
 
 gridItems.forEach(elem=>{
     elem.addEventListener('mousedown', paintOnHover);
     elem.addEventListener('mouseenter', paintOnHover);
+});
+
+inputRange.addEventListener('change', ()=>{
+    
+    gridSize = inputRange.value;
+
+    removeElementsByClass("grid-cells");
+    
+    makeGrid(gridSize, gridSize);
+    
+    let newGridCells = document.querySelectorAll(".grid-cells");
+    console.log(newGridCells);
+    console.log(gridItems);
+    newGridCells.forEach(elem=>{
+        elem.addEventListener('mousedown', paintOnHover);
+        elem.addEventListener('mouseenter', paintOnHover);
+    });
+    
 })
+
+function removeElementsByClass(className){
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}
+
+
 
 //apretar boton borrar y que borre
 //como borrar?

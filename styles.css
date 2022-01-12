@@ -49,8 +49,8 @@ header{
 .grid-container{
     display:grid;
     position: fixed;
-    height: 500px;
-    width: 500px;
+    height: 544px;
+    width: 544px;
     align-items: center;
     background-color: var(--color-background);
     margin: 0;
