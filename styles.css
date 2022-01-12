@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Press+Start+2P&family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 
 
@@ -20,21 +20,12 @@
 }
 body{
     height: 100vh;
-    background-color: #086E7D
+    background-color: #F6F8ED;
+    font-family: 'Roboto', sans-serif;
+    
 
     
 
-}
-
-header{
-    text-align: center;
-    font-size: 30px;
-    background-color: #FFF89A;
-    font-family: 'Indie Flower', cursive;
-    font-weight: 600;
-    border-bottom: 2px solid rgb(26, 95, 122);
-    
-    ;
 }
 
 .container{
@@ -59,7 +50,7 @@ header{
     border-top:1px solid gainsboro;
     rgb(248, 245, 197)*/
     
-    box-shadow: rgba(0, 0, 0, 0.4) 2.4px 2.4px 3.2px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-columns), 1fr);
 }
@@ -83,10 +74,11 @@ header{
     margin-right: 80vw;
     height: 80vh;
     width: 250px;
-    gap: 5px;
-    border: 1px solid rgb(26, 95, 122);
+    gap: 8px;
+    
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #B2AABB;
     
     
     
@@ -103,6 +95,7 @@ header{
     margin: 10px;
     padding:10px 15px;
     width: 90px;
+    border-radius: 4px;
     
 }
 .rainbow,
@@ -133,12 +126,17 @@ header{
 }
 .clear-container{
     
-    height: 20vh;
+    height: 10vh;
     width: 15vw;
     margin-left: 5%;
-    
+    margin-top: 5%;
+    border-radius: 5px;
+    width: 225px;
     position: absolute;
     top: 0;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+
+    background-color: #f6f8ed62
 }
 
 .inline-button{
@@ -148,15 +146,16 @@ header{
 }
 .section{
     display: flex;
-    border: 2px solid rgb(26, 95, 122);
+    width: 225px;
     margin-left: 5%;
     border-radius: 5px;
+    background-color: #f6f8ed62;
+    
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
     
 }
 
-button{
-    color: rgb(26, 95, 122);
-}
+
 .color-picker{
     margin-bottom: 20px;
 }
@@ -167,8 +166,29 @@ button{
 .colorContainer{
     justify-content: center;
     color: white;
-    padding: 2.5%;
+    padding: 2%;
 }
 .range-slider{
-    gap: 10px;
+    gap: 15px;
 }
+
+
+label{
+    color: white;
+    font-weight: 700;
+}
+
+.header-container{
+    font-size: 30px;
+    /*background-color: #FFF89A;*/
+    
+    font-weight: 400;
+    margin-left: 10px;
+    width: 98vw;
+    display: flex;
+    flex: 1;
+    border-bottom: 2px solid #F8F9F1;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+
