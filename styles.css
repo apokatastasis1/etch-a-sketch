@@ -7,6 +7,7 @@
     --grid-rows: 1;
     --grid-columns: 1;
     --color-background: white;
+    --color-border: gainsboro;
 }
 
 *,
@@ -49,6 +50,7 @@ body{
     /*border-left: 1px solid gainsboro;
     border-top:1px solid gainsboro;
     rgb(248, 245, 197)*/
+    border: 1px solid gainsboro;
     
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
@@ -104,8 +106,8 @@ body{
 }
 
 .gray-border{
-    border-bottom: 1px solid gainsboro;
-    border-right: 1px solid gainsboro ;
+    border-bottom: 1px solid var(--color-border);
+    border-right: 1px solid  var(--color-border);
 }
 
 
@@ -154,6 +156,22 @@ body{
     box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
     
 }
+.range-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    
+    padding-top: 5px;
+    
+    
+}
+
+.range-container label{
+   
+    margin-left: 3%;
+
+}
+
 
 
 .color-picker{
@@ -169,8 +187,11 @@ body{
     padding: 2%;
 }
 .range-slider{
-    gap: 15px;
+    display: flex;
+    margin-left: 3%;
+    gap: 13px;
 }
+
 
 
 label{
@@ -190,5 +211,7 @@ label{
     border-bottom: 2px solid #F8F9F1;
     box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 }
+
+
 
 

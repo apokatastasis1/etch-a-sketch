@@ -7,8 +7,9 @@ let isRainbowActive = false;
 let isShadowActive = false;
 let isLightActive = false;
 let isSingleColorActive = true;
-console.log(hexCharacters);
-//"gainsboro";
+let wasGridModified = false;
+let isToggleGridActive = true;
+
 
 
 const gridContainer = document.querySelector(".grid-container");
@@ -21,22 +22,54 @@ const shadowBtn = document.querySelector(".shadow");
 const lightBtn = document.querySelector(".light");
 const inputRange = document.querySelector("#inputRange");
 const rangeValue = document.querySelector(".range-value");
+const gridLinesBtn = document.querySelector(".toggle-grid");
 
-console.log(rangeValue);
-console.log(rangeValue.textContent);
+gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
+
+function toggleCustomGridLInes(){
+    
+    if(!isToggleGridActive){
+        let newCells = document.querySelectorAll(".grid-cells"); 
+        let lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
+        //newCells.forEach(elem=> elem.style.setProperty("--color-border", 'gainsboro'));
+        newCells.forEach(elem=> {
+
+            elem.style.borderBottom = `1px solid gainsboro`;
+            elem.style.borderRight = `1px solid gainsboro`;
+
+        });
+        lastColumnCells.forEach(elem=> elem.style.borderRight = "none");
+        isToggleGridActive = true;
+
+    }else if (isToggleGridActive){
+
+        let newCells = document.querySelectorAll(".grid-cells"); 
+        //newCells.forEach(elem=> elem.classList.toggle('gray-border'));
+        //newCells.forEach(elem=> elem.style.setProperty("--color-border", 'none'));
+        newCells.forEach(elem=> elem.style.border = "none");
+        isToggleGridActive = false;
+    } 
+    
+}
+
 
 
 
 //gridContainer.addEventListener('click', paint);
-clearBtn.addEventListener('click', clear);
+clearBtn.addEventListener('click', customizeGrid);
 colorPicker.addEventListener('change', updateColor);
 eraserBtn.addEventListener('click', erase);
 singleColorBtn.addEventListener('click', singleColor);
 rainbowBtn.addEventListener('click', activateRainbowMode);
 shadowBtn.addEventListener('click', activateShadowMode);
 lightBtn.addEventListener('click', activateLightMode);
+inputRange.addEventListener('change', customizeGrid);
 
 
+
+makeGrid(20,20);
+
+let lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
 //Function to convert rgb to hex
 
 let rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
@@ -114,15 +147,20 @@ function erase(){
 }
 
 
+//Activates single color mode
+function toggleBooleans(){
+    isSingleColorActive = true;
+    isRainbowActive = false;
+    isShadowActive = false;
+    isLightActive = false;
+
+}
 
 
 
 
 function updateColor(e){
-    isSingleColorActive = true;
-    isRainbowActive = false;
-    isShadowActive = false;
-    isLightActive = false;
+    toggleBooleans();
     activeColor = e.target.value;
     borderColor = e.target.value;
     colorBackup = e.target.value;
@@ -141,7 +179,7 @@ function makeGrid(rows, columns){
         
         };
 
-        console.log(gridSize);
+        
 }
 
 function paintOnHover(e){
@@ -151,8 +189,8 @@ function paintOnHover(e){
         if(isRainbowActive){
             hexNum = randomColor();
             e.target.style.backgroundColor = hexNum
-            e.target.style.borderBottom = `1px solid ${hexNum}`;
-            e.target.style.borderRight = `1px solid ${hexNum}`;
+            //e.target.style.borderBottom = `1px solid ${hexNum}`;
+            //e.target.style.borderRight = `1px solid ${hexNum}`;
             console.log("rainbow is active");
 
         }else if(isShadowActive){
@@ -166,8 +204,8 @@ function paintOnHover(e){
                 let color = rgba2hex(e.target.style.backgroundColor.toString()); //Convert the rgb to hex
                 color = adjustBrightness(color, 10);
                 e.target.style.backgroundColor = color;
-                e.target.style.borderBottom = `1px solid ${color}`;
-                e.target.style.borderRight = `1px solid ${color}`;
+                //e.target.style.borderBottom = `1px solid ${color}`;
+                //e.target.style.borderRight = `1px solid ${color}`;
             }
 
             
@@ -184,16 +222,18 @@ function paintOnHover(e){
                 let color = rgba2hex(e.target.style.backgroundColor.toString()); //Convert the rgb to hex
                 color = adjustBrightness(color, -10);
                 e.target.style.backgroundColor = color;
-                e.target.style.borderBottom = `1px solid ${color}`;
-                e.target.style.borderRight = `1px solid ${color}`;
+                //e.target.style.borderBottom = `1px solid ${color}`;
+                //e.target.style.borderRight = `1px solid ${color}`;
             }
 
 
         } else if (isSingleColorActive) {
             //Paint with single color 
             e.target.style.backgroundColor = activeColor;
-            e.target.style.borderBottom = `1px solid ${borderColor}`;
-            e.target.style.borderRight = `1px solid ${borderColor}`;
+            //e.target.style.borderTop = `1px solid ${borderColor}`;
+            //e.target.style.borderLeft = `1px solid ${borderColor}`;
+            //e.target.style.borderBottom = `1px solid ${borderColor}`;
+            //e.target.style.borderRight = `1px solid ${borderColor}`;
             console.log(e.target.style.backgroundColor);
         }
     }
@@ -237,29 +277,6 @@ function adjustBrightness(col, amt) {
 
 }
 
-
-
-
-
-function clear(){
-
-    gridItems.forEach(elem => {
-    
-        elem.setAttribute('style', 'background-color: white');
-
-    });
-   
-    updateColor();
-    
-}
-
-
-
-
-
-
-makeGrid(20,20);
-
 let gridItems = document.querySelectorAll(".grid-cells");
 
 gridItems.forEach(elem=>{
@@ -267,23 +284,39 @@ gridItems.forEach(elem=>{
     elem.addEventListener('mouseenter', paintOnHover);
 });
 
-inputRange.addEventListener('change', ()=>{
+
+
+function customizeGrid(){
+    wasGridModified = true;
     
     gridSize = inputRange.value;
-
+    let newGridCells;
+    let lastColumnCells;
     removeElementsByClass("grid-cells");
-    
     makeGrid(gridSize, gridSize);
+       
+
+            
+    newGridCells = document.querySelectorAll(".grid-cells");
+    lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
+        //deletes right border
+    lastColumnCells.forEach(elem =>{
+    elem.style.borderRight = "none";
     
-    let newGridCells = document.querySelectorAll(".grid-cells");
-    console.log(newGridCells);
-    console.log(gridItems);
+    });
+
     newGridCells.forEach(elem=>{
         elem.addEventListener('mousedown', paintOnHover);
         elem.addEventListener('mouseenter', paintOnHover);
     });
     
-})
+    toggleBooleans();
+    activeColor = colorBackup;
+    borderColor = colorBackup; 
+
+}
+
+
 
 function removeElementsByClass(className){
     const elements = document.getElementsByClassName(className);
@@ -293,6 +326,13 @@ function removeElementsByClass(className){
 }
 
 
+//deletes de right border from the cells of the last column
+
+lastColumnCells.forEach(elem =>{
+    elem.style.borderRight = "none";
+    
+});
+console.log(lastColumnCells);
 
 //apretar boton borrar y que borre
 //como borrar?
