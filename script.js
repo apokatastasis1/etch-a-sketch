@@ -39,6 +39,13 @@ function toggleCustomGridLInes(){
 
         });
         lastColumnCells.forEach(elem=> elem.style.borderRight = "none");
+
+        for(let i=newCells.length-gridSize; i<newCells.length;i++){
+            newCells[i].style.borderBottom = "none";
+        }
+
+
+
         isToggleGridActive = true;
 
     }else if (isToggleGridActive){
@@ -305,6 +312,13 @@ function customizeGrid(){
     
     });
 
+     //deletes bottom border
+     for(let i=newGridCells.length-gridSize; i<newGridCells.length;i++){
+        newGridCells[i].style.borderBottom = "none";
+        }
+    
+     
+
     newGridCells.forEach(elem=>{
         elem.addEventListener('mousedown', paintOnHover);
         elem.addEventListener('mouseenter', paintOnHover);
@@ -332,6 +346,12 @@ lastColumnCells.forEach(elem =>{
     elem.style.borderRight = "none";
     
 });
+
+//deletes border bottom to the lasr row
+for(let i=gridItems.length-gridSize; i<gridItems.length;i++){
+    gridItems[i].style.borderBottom = "none";
+}
+
 console.log(lastColumnCells);
 
 //apretar boton borrar y que borre
