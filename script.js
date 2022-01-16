@@ -176,18 +176,33 @@ function updateColor(e){
 
 
 function makeGrid(rows, columns){
+    console.log(gridContainer.offsetWidth);
+    let cellWIdth = 544/rows; //grid container size(px) / number of rows
+    gridContainer.style.gridTemplateColumns = `repeat(${columns}, ${cellWIdth}px)  `;
+    gridContainer.style.gridTemplateRows = `repeat(${rows}, ${cellWIdth}px) `;
+
+    /*
+    if (gridSize < 4) {
+        gridContainer.style.gridTemplateColumns = `repeat(${gridSize},1fr`;
+        gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr`;
+    };
     gridContainer.style.setProperty("--grid-rows", rows);
     gridContainer.style.setProperty("--grid-columns", columns);
-        for(let i=0; i< (rows*columns);i++){
+    */
 
-            let cell = document.createElement("div");
-            cell.setAttribute('draggable', 'false');
-            gridContainer.appendChild(cell).className = "grid-cells gray-border";
-        
-        };
+
+
+    for(let i=0; i< (rows*columns);i++){
+
+        let cell = document.createElement("div");
+        cell.setAttribute('draggable', 'false');
+        gridContainer.appendChild(cell).className = "grid-cells gray-border";
+    
+    };
 
         
 }
+
 
 function paintOnHover(e){
     if (e.buttons > 0){
@@ -356,4 +371,4 @@ console.log(lastColumnCells);
 
 //apretar boton borrar y que borre
 //como borrar?
-//Pinto de blanco el backgroun
+//Pinto de blanco el background
