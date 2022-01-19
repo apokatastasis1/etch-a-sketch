@@ -74,15 +74,18 @@ body{
     
     
 }
-
-
+/*
+*{
+    border: 1px solid green;
+}
+*/
 .side{
     display: flex;
     position: relative;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    
+    justify-content: space-around;
+    padding: 8px 0 8px 0;
     height: 80vh;
     width: 250px;
     gap: 8px;
@@ -143,8 +146,9 @@ body{
     margin-top: 5%;
     border-radius: 5px;
     width: 225px;
-    position: absolute;
+    /*position: absolute;
     top: 0;
+    */
     box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 
     background-color: #f6f8ed62
@@ -157,8 +161,10 @@ body{
 }
 .section{
     display: flex;
-    width: 225px;
-    margin-left: 5%;
+    /*width: 225px;*/
+    align-self: center;
+    width: 90%;
+    /*margin-left: 5%;*/
     border-radius: 5px;
     background-color: #f6f8ed62;
     
@@ -187,7 +193,7 @@ body{
     margin-bottom: 20px;
 }
 #color-pick{
-    width: 100px;
+    width: 35%;
 }
 
 .colorContainer{
@@ -240,7 +246,11 @@ label{
 }
 
 
-
+.section .centeredBtn{
+    margin-left: auto;
+    margin-right: auto;
+    
+}
 
 
 

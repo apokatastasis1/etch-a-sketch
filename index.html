@@ -7,6 +7,11 @@
     <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="./script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.js"></script>
+
+    
+    
 
 </head>
 <body ondragstart="return false;">
@@ -19,7 +24,7 @@
   
     <div class="container">
         <div class="side">
-            <div class="clear-container">
+            <div class="inline-button section">
                 <button class="btn clear">Clear</button>
                 <button class="btn eraser">Eraser</button>
             </div>
@@ -57,7 +62,12 @@
             
 
             <div class="section">
-                <button class="btn toggle-grid">Toggle Grid</button>
+                <button class="btn toggle-grid centeredBtn">Toggle Grid</button>
+               
+            </div>
+
+            <div class="section">
+                <button class="btn save-image centeredBtn">Save</button>
             </div>
             
             
@@ -68,7 +78,7 @@
         </div>
         
        
-        <div class="grid-container"></div>
+        <div class="grid-container" id="grid"></div>
         
              
 

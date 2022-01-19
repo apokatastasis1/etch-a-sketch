@@ -1,3 +1,5 @@
+
+
 let gridSize = 20;
 let activeColor = "#000000";
 let borderColor = activeColor;
@@ -12,6 +14,7 @@ let isToggleGridActive = true;
 
 
 
+
 const gridContainer = document.querySelector(".grid-container");
 const clearBtn = document.querySelector(".clear");
 const eraserBtn = document.querySelector(".eraser");
@@ -23,6 +26,7 @@ const lightBtn = document.querySelector(".light");
 const inputRange = document.querySelector("#inputRange");
 const rangeValue = document.querySelector(".range-value");
 const gridLinesBtn = document.querySelector(".toggle-grid");
+const saveBtn = document.querySelector(".save-image");
 
 gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
 
@@ -362,13 +366,28 @@ lastColumnCells.forEach(elem =>{
     
 });
 
-//deletes border bottom to the lasr row
+
+//deletes border bottom to the last row
 for(let i=gridItems.length-gridSize; i<gridItems.length;i++){
     gridItems[i].style.borderBottom = "none";
 }
 
-console.log(lastColumnCells);
 
-//apretar boton borrar y que borre
-//como borrar?
-//Pinto de blanco el background
+
+
+
+
+//Save the drawing
+
+saveBtn.addEventListener('click', ()=>{
+    domtoimage.toBlob(document.getElementById('grid'))
+    .then(function (blob) {
+        window.saveAs(blob, 'my-drawing.png');
+    });
+
+});
+
+
+
+    
+
