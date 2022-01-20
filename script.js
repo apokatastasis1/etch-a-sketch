@@ -14,10 +14,10 @@ let isToggleGridActive = true;
 let isSeasonCOlorActive = false;
 
 //Spring 0-7 Summer 8-15 Fall 16-23 WInter 24-31
-let colors = ["c6d7b9", "afd297", "88c5a1", "e0e293", "5e8d5a","f6b9ad","e1a18e","ee6f68",
-            "e2f4c7", "eae374", "f9d62e", "fdb863", "ff9750", "fc913a", "ff4d4d", "ff6b51",
-            "243236", "3e5258",  "606c38", "283618", "d06f1e", "dda15e", "bc6c25", "47281a",
-            "99afe4", "567ac5", "2859a6", "e9e8ef", "c9ccde", "a5abd0", "444484", "7b7c97"];
+let colors = ["c6d7b9", "afd297", "88c5a1", "e0e293", "5e8d5a","f6b9ad","e1a18e","ee6f68", //spring
+            "e2f4c7", "eae374", "f9d62e", "fdb863", "ff9750", "fc913a", "ff4d4d", "ff6b51", //summer
+            "243236", "3e5258",  "606c38", "283618", "d06f1e", "dda15e", "bc6c25", "47281a", //fall
+            "99afe4", "567ac5", "2859a6", "e9e8ef", "c9ccde", "a5abd0", "444484", "7b7c97"]; //winter
 
 
 
@@ -98,11 +98,11 @@ seasonsColors.forEach(color=> color.addEventListener('click', (e)=>{
         console.log("entro");
         e.target.classList.toggle('scale-color');
     }
-    
 
-
-    
     isSeasonCOlorActive = true;
+
+    toggleBooleans();
+    activeColor = e.target.style.backgroundColor;
 
 }));
 
