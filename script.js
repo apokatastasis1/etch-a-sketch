@@ -11,6 +11,13 @@ let isLightActive = false;
 let isSingleColorActive = true;
 let wasGridModified = false;
 let isToggleGridActive = true;
+let isSeasonCOlorActive = false;
+
+//Spring 0-7 Summer 8-15 Fall 16-23 WInter 24-31
+let colors = ["c6d7b9", "afd297", "88c5a1", "e0e293", "5e8d5a","f6b9ad","e1a18e","ee6f68",
+            "e2f4c7", "eae374", "f9d62e", "fdb863", "ff9750", "fc913a", "ff4d4d", "ff6b51",
+            "243236", "3e5258",  "606c38", "283618", "d06f1e", "dda15e", "bc6c25", "47281a",
+            "99afe4", "567ac5", "2859a6", "e9e8ef", "c9ccde", "a5abd0", "444484", "7b7c97"];
 
 
 
@@ -27,8 +34,11 @@ const inputRange = document.querySelector("#inputRange");
 const rangeValue = document.querySelector(".range-value");
 const gridLinesBtn = document.querySelector(".toggle-grid");
 const saveBtn = document.querySelector(".save-image");
+const seasonsColors = document.querySelectorAll(".color");
 
-gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
+
+
+
 
 function toggleCustomGridLInes(){
     
@@ -75,7 +85,61 @@ rainbowBtn.addEventListener('click', activateRainbowMode);
 shadowBtn.addEventListener('click', activateShadowMode);
 lightBtn.addEventListener('click', activateLightMode);
 inputRange.addEventListener('change', customizeGrid);
+gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
 
+//
+seasonsColors.forEach(color=> color.addEventListener('click', (e)=>{
+    let colorPicked = document.querySelectorAll(".scale-color");
+    if (isSeasonCOlorActive){
+        colorPicked.forEach(color =>color.classList.toggle('scale-color'));
+        e.target.classList.toggle('scale-color');
+        isSeasonCOlorActive = false;
+    }  else{
+        console.log("entro");
+        e.target.classList.toggle('scale-color');
+    }
+    
+
+
+    
+    isSeasonCOlorActive = true;
+
+}));
+
+function scaleSeasonColors(e){
+    e.target.className.toggle("scale-color");
+    console.log(e.target.classList.toggle("scale-color"));
+
+
+    
+    console.log(e.target.className);
+    console.log(e);
+    console.log(e.target);
+    console.log(e.target.classList);
+    console.log(e.target.classList[1]=="test");
+    console.log(e.target.getAttribute('data-num'));
+}
+
+console.log(seasonsColors[1].getAttribute('data-num'))
+
+
+//Spring 0-7 Summer 8-15 Fall 16-23 WInter 24-31
+
+for(let i=0;i<colors.length;i++){
+    console.log(colors[i]);
+    seasonsColors[i].style.backgroundColor = "#" + colors[i];
+        
+}
+//seasonsColors[0].setAttribute('style', 'backgroundColor: red');
+
+
+
+
+function fillSesasonColor(e){
+    for(let i=0;i<32;i++){
+
+    }
+}
 
 
 makeGrid(20,20);
@@ -318,11 +382,13 @@ function customizeGrid(){
     gridSize = inputRange.value;
     let newGridCells;
     let lastColumnCells;
+
+    //To make a new grid, it's necessary to remove the old cells
     removeElementsByClass("grid-cells");
     makeGrid(gridSize, gridSize);
        
 
-            
+    //select the new cells and deletes borders of the last columns and rows        
     newGridCells = document.querySelectorAll(".grid-cells");
     lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
         //deletes right border
@@ -332,9 +398,11 @@ function customizeGrid(){
     });
 
      //deletes bottom border
-     for(let i=newGridCells.length-gridSize; i<newGridCells.length;i++){
+    for(let i=newGridCells.length-gridSize; i<newGridCells.length;i++){
+        console.log("hola");
+        console.log(newGridCells);
         newGridCells[i].style.borderBottom = "none";
-        }
+    }
     
      
 
