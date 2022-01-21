@@ -39,14 +39,27 @@ const seasonsColors = document.querySelectorAll(".color");
 const buttons = document.querySelectorAll(".btn");
 
 
-console.log(gridContainer.offsetWidth);
+
+clearBtn.addEventListener('click', customizeGrid);
+colorPicker.addEventListener('change', updateColor);
+eraserBtn.addEventListener('click', erase);
+singleColorBtn.addEventListener('click', singleColor);
+rainbowBtn.addEventListener('click', activateRainbowMode);
+shadowBtn.addEventListener('click', activateShadowMode);
+lightBtn.addEventListener('click', activateLightMode);
+inputRange.addEventListener('change', customizeGrid);
+gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
+
+
+
+
 
 function toggleCustomGridLInes(){
     
     if(!isToggleGridActive){
         let newCells = document.querySelectorAll(".grid-cells"); 
         let lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
-        //newCells.forEach(elem=> elem.style.setProperty("--color-border", 'gainsboro'));
+        
         newCells.forEach(elem=> {
 
             elem.style.borderBottom = `1px solid gainsboro`;
@@ -66,27 +79,11 @@ function toggleCustomGridLInes(){
     }else if (isToggleGridActive){
 
         let newCells = document.querySelectorAll(".grid-cells"); 
-        //newCells.forEach(elem=> elem.classList.toggle('gray-border'));
-        //newCells.forEach(elem=> elem.style.setProperty("--color-border", 'none'));
         newCells.forEach(elem=> elem.style.border = "none");
         isToggleGridActive = false;
     } 
     
 }
-
-
-
-
-//gridContainer.addEventListener('click', paint);
-clearBtn.addEventListener('click', customizeGrid);
-colorPicker.addEventListener('change', updateColor);
-eraserBtn.addEventListener('click', erase);
-singleColorBtn.addEventListener('click', singleColor);
-rainbowBtn.addEventListener('click', activateRainbowMode);
-shadowBtn.addEventListener('click', activateShadowMode);
-lightBtn.addEventListener('click', activateLightMode);
-inputRange.addEventListener('change', customizeGrid);
-gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
 
 
 //Add event listeners to all button minus the clear, toggle grid and save button
@@ -112,13 +109,6 @@ function colorPressButton(e){
     isButtonPressed = true;
 
 }
-/*
-buttons.forEach(btn=>btn.addEventListener('click', (e)=>{
-    e.target.classList.toggle("pressed");
-}))
-*/
-
-console.log(gridContainer.offsetWidth);
 
 
 
@@ -167,20 +157,10 @@ for(let i=0;i<colors.length;i++){
         
 }
 
-
-
-
-
-function fillSesasonColor(e){
-    for(let i=0;i<32;i++){
-
-    }
-}
-
-
 makeGrid(20,20);
 
 let lastColumnCells = document.querySelectorAll(`.grid-cells:nth-child(${gridSize}n)`);
+
 //Function to convert rgb to hex
 
 let rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`;
@@ -260,7 +240,7 @@ function erase(){
     activeColor = "white";
     borderColor = "gainsboro";
     resizePickedColors();
-    //colorPicker.value = "#FFFFFF"
+    
 }
 
 
@@ -281,25 +261,19 @@ function updateColor(e){
     activeColor = e.target.value;
     borderColor = e.target.value;
     colorBackup = e.target.value;
-    console.log(e.target.value);
+    
 }
 
 
 function makeGrid(rows, columns){
-    console.log(gridContainer.offsetWidth);
+    
+    buttons[2].classList.toggle("pressed");
+    isButtonPressed = true;
+
+
     let cellWIdth = gridContainer.offsetWidth/rows; //grid container size(px) / number of rows
     gridContainer.style.gridTemplateColumns = `repeat(${columns}, ${cellWIdth}px)  `;
     gridContainer.style.gridTemplateRows = `repeat(${rows}, ${cellWIdth}px) `;
-
-    /*
-    if (gridSize < 4) {
-        gridContainer.style.gridTemplateColumns = `repeat(${gridSize},1fr`;
-        gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr`;
-    };
-    gridContainer.style.setProperty("--grid-rows", rows);
-    gridContainer.style.setProperty("--grid-columns", columns);
-    */
-
 
 
     for(let i=0; i< (rows*columns);i++){
@@ -321,9 +295,7 @@ function paintOnHover(e){
         if(isRainbowActive){
             hexNum = randomColor();
             e.target.style.backgroundColor = hexNum
-            //e.target.style.borderBottom = `1px solid ${hexNum}`;
-            //e.target.style.borderRight = `1px solid ${hexNum}`;
-            console.log("rainbow is active");
+            
 
         }else if(isShadowActive){
             //Verify if are trying to use shadow on an epty cell 
@@ -336,8 +308,7 @@ function paintOnHover(e){
                 let color = rgba2hex(e.target.style.backgroundColor.toString()); //Convert the rgb to hex
                 color = adjustBrightness(color, 10);
                 e.target.style.backgroundColor = color;
-                //e.target.style.borderBottom = `1px solid ${color}`;
-                //e.target.style.borderRight = `1px solid ${color}`;
+               
             }
 
             
@@ -354,19 +325,14 @@ function paintOnHover(e){
                 let color = rgba2hex(e.target.style.backgroundColor.toString()); //Convert the rgb to hex
                 color = adjustBrightness(color, -10);
                 e.target.style.backgroundColor = color;
-                //e.target.style.borderBottom = `1px solid ${color}`;
-                //e.target.style.borderRight = `1px solid ${color}`;
+                
             }
 
 
         } else if (isSingleColorActive) {
             //Paint with single color 
             e.target.style.backgroundColor = activeColor;
-            //e.target.style.borderTop = `1px solid ${borderColor}`;
-            //e.target.style.borderLeft = `1px solid ${borderColor}`;
-            //e.target.style.borderBottom = `1px solid ${borderColor}`;
-            //e.target.style.borderRight = `1px solid ${borderColor}`;
-            console.log(e.target.style.backgroundColor);
+            
         }
     }
     
@@ -374,20 +340,19 @@ function paintOnHover(e){
 }
 
 function adjustBrightness(col, amt) {
-    console.log(col);
-    var usePound = false;
+    
+    let usePound = false;
 
     if (col[0] == "#") {
         col = col.slice(1);
         usePound = true;
     }
 
-    var R = parseInt(col.substring(0,2),16);
-    var G = parseInt(col.substring(2,4),16);
-    var B = parseInt(col.substring(4,6),16);
+    let R = parseInt(col.substring(0,2),16);
+    let G = parseInt(col.substring(2,4),16);
+    let B = parseInt(col.substring(4,6),16);
 
-    // to make the colour less bright than the input
-    // change the following three "+" symbols to "-"
+    
     R = R - amt;
     G = G - amt;
     B = B - amt;
@@ -401,9 +366,9 @@ function adjustBrightness(col, amt) {
     if (B > 255) B = 255;
     else if (B < 0) B = 0;
 
-    var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-    var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-    var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+    let RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
+    let GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
+    let BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
 
     return (usePound?"#":"") + RR + GG + BB;
 
@@ -420,7 +385,11 @@ gridItems.forEach(elem=>{
 
 function customizeGrid(){
 
+    //unpressed the buttons
+    buttons.forEach(btn=>btn.classList.remove("pressed"));
+    
     resizePickedColors();
+
 
     wasGridModified = true;
     
@@ -484,9 +453,6 @@ lastColumnCells.forEach(elem =>{
 for(let i=gridItems.length-gridSize; i<gridItems.length;i++){
     gridItems[i].style.borderBottom = "none";
 }
-
-
-
 
 
 

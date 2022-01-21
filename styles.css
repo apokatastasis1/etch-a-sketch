@@ -45,62 +45,28 @@ body{
 
 .grid-container{
     display:grid;
-    
     width: 544px;
     height: 544px;
-    /*
-    height: 544px;
-    width: 544px;
-    */
     align-items: center;
     background-color: var(--color-background);
     margin: 0;
     padding: 0;
-
-    /*border-left: 1px solid gainsboro;
-    border-top:1px solid gainsboro;
-    rgb(248, 245, 197)*/
-    /*border: 1px solid gainsboro;*/
-    
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-    /*
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-columns), 1fr);
-    */
 }
 
 .grid-cells{
-    /*border: 1px solid gainsboro;*/
-    
+   
     aspect-ratio: 1;
     
-    
-    
 }
-/*
-*{
-    border: 1px solid green;
-}
-*/
+
 
 
 #color-pick{
     margin-left: 20px;
 }
 
-/*
-.btn{
-    margin: 10px;
-    padding:10px 15px;
-    width: 40%;
-    
-    
-    font-size: 85%;
-    border-radius: 10px;
-    
-}
-*/
+
 
 .pressed{
     
@@ -121,18 +87,6 @@ body{
 }
 
 
-
-.tools{
-    
-    position: relative;
-    width: 36vw;
-    justify-content: center;
-    align-items: center;
-    
-    
-}
-
-
 .eraser{
     align-items: flex-end;
 }
@@ -144,11 +98,7 @@ body{
     margin-top: 5%;
     border-radius: 5px;
     width: 225px;
-    /*position: absolute;
-    top: 0;
-    */
     box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
-
     background-color: #f6f8ed62
 }
 
@@ -172,22 +122,12 @@ body{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: #B2AABB;
     
-    
-    
-   
-    
 }
 .section{
     display: flex;
-    
-    
-    /*width: 225px;*/
     align-self: center;
-    
     width: 90%;
     min-height: 40px;
-    
-    /*margin-left: 5%;*/
     border-radius: 5px;
     background-color: #f6f8ed62;
     justify-content: center;
@@ -198,14 +138,13 @@ body{
     display: flex;
     flex-direction: column;
     row-gap: 8px;
-    
-    padding: 5px 10px;
-    
+    padding: 5px 10px;   
 }
 
 .range-container label{
    
     margin-left: 3%;
+    
 
 }
 
@@ -229,6 +168,10 @@ body{
     gap: 13px;
 }
 
+.range-value{
+    font-weight: 580;
+    color: black;
+}
 
 
 label{
@@ -238,7 +181,7 @@ label{
 
 .header-container{
     font-size: 30px;
-    /*background-color: #FFF89A;*/
+    
     
     font-weight: 400;
     margin-left: 10px;
@@ -284,10 +227,7 @@ label{
 }
 
 .color{
-    /*
-    width: 30px;
-    height: 30px;
-    */
+    
     width: 28px;
     height: 28px;
     border: 2px solid rgba(0, 0, 0, 0.096);
@@ -318,7 +258,6 @@ label{
 
 .btn{
     appearance: none;
-    /*background-color: #FAFBFC;*/
     border: 1px solid rgba(27, 31, 35, 0.15);
     border-radius: 6px;
     box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
@@ -338,11 +277,7 @@ label{
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: middle;
-    
-    
     margin: 10px;
-    
-    
     width: 40%;
   }
   
