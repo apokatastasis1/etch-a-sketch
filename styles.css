@@ -20,6 +20,9 @@
     
 }
 body{
+   
+    
+    width: 100vw;
     height: 100vh;
     background-color: #F6F8ED;
     font-family: 'Roboto', sans-serif;
@@ -53,6 +56,7 @@ body{
     background-color: var(--color-background);
     margin: 0;
     padding: 0;
+
     /*border-left: 1px solid gainsboro;
     border-top:1px solid gainsboro;
     rgb(248, 245, 197)*/
@@ -79,40 +83,33 @@ body{
     border: 1px solid green;
 }
 */
-.side{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    padding: 8px 0 8px 0;
-    height: 80vh;
-    width: 250px;
-    gap: 8px;
-    
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    background-color: #B2AABB;
-    
-    
-    
-   
-    
-}
+
 
 #color-pick{
     margin-left: 20px;
 }
 
-
+/*
 .btn{
     margin: 10px;
     padding:10px 15px;
-    width: 90px;
+    width: 40%;
     
-    border-radius: 2px;
+    
+    font-size: 85%;
+    border-radius: 10px;
     
 }
+*/
+
+.pressed{
+    
+    background-color: #77bbaa8c;
+    color: white;
+
+}
+
+
 .rainbow,
 .single-color{
     height:60px
@@ -160,15 +157,36 @@ body{
     align-items: center;
     
 }
+.side{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 8px 0 8px 0;
+    height: 80vh;
+    width: 250px;
+    gap: 8px;
+    
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #B2AABB;
+    
+    
+    
+   
+    
+}
 .section{
     display: flex;
-    flex-wrap: wrap;
+    
     
     /*width: 225px;*/
     align-self: center;
     
     width: 90%;
     min-height: 40px;
+    
     /*margin-left: 5%;*/
     border-radius: 5px;
     background-color: #f6f8ed62;
@@ -181,8 +199,7 @@ body{
     flex-direction: column;
     row-gap: 8px;
     
-    padding-top: 5px;
-    
+    padding: 5px 10px;
     
 }
 
@@ -259,9 +276,9 @@ label{
 
 .season{
     display: flex;
-    gap: 15px;
+    gap: 10px;
     
-    padding: 15px 10px;
+    padding: 12px 5px;
 
     
 }
@@ -271,24 +288,208 @@ label{
     width: 30px;
     height: 30px;
     */
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border: 2px solid rgba(0, 0, 0, 0.096);
-    /*border-radius: 15px;*/
+    border-radius: 14px;
     
 }
 
-/*
-.color:hover{
-    transform: scale(1.1);
-}
-*/
-
-
 .scale-color{
-    transform: scale(1.1);
+    transform: scale(1.2);
+}
+
+.season-name{
+    display: flex;
+    padding: 2px 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    color: white;
+    font-weight: 1000;
+    border-bottom: 2px solid #30302e17;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
 }
 
 
 
 
+
+.btn{
+    appearance: none;
+    /*background-color: #FAFBFC;*/
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    border-radius: 6px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 6px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    
+    
+    margin: 10px;
+    
+    
+    width: 40%;
+  }
+  
+  
+  .btn:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+  }
+  
+  
+  .btn:disabled {
+    background-color: #FAFBFC;
+    border-color: rgba(27, 31, 35, 0.15);
+    color: #959DA5;
+    cursor: default;
+  }
+  
+  .btn:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+  }
+  
+  .btn:focus {
+    outline: 1px transparent;
+  }
+  
+  
+  .btn:before {
+    display: none;
+  }
+  
+  .btn:-webkit-details-marker {
+    display: none;
+
+  }
+
+  .wrap{
+      flex-wrap: wrap;
+  }
+
+
+
+  @media only screen and (min-height: 900px) {
+    .side {
+      height: 65vh;
+    }
+  }
+
+  @media only screen and (min-height: 1000px) {
+    .side {
+      height: 60vh;
+    }
+  }
+
+  @media only screen and (min-width: 1500px) {
+    .grid-container{
+        width: 600px;
+        height: 600px;
+    }
+  }
+  @media only screen and (min-width: 1900px) {
+    .grid-container{
+        width: 650px;
+        height: 650px;
+    }
+  }
+
+
+  @media only screen and (max-width: 1069px) {
+    
+    .container{
+        flex-direction: row;
+        
+        position: relative;
+        
+    }
+
+    .side{
+        top: 93vh;
+        right: 52vw;
+        position: absolute;
+    }
+    .season-panel{
+        left: 52vw;
+    }
+    
+  }
+  @media only screen and (max-width: 600px) {
+    
+    .grid-container{
+        margin-top: -180px;
+        width: 450px;
+        height: 450px;
+    }
+    .side{
+        top:70vh;
+    }
+    
+  }
+
+  @media only screen and (max-width: 500px) {
+    
+    .grid-container{
+        margin-top: -200px;
+        width: 450px;
+        height: 450px;
+    }
+    .side{
+        top:70vh;
+        right: 51vw;
+        width: 45vw;
+        padding: 0;
+        margin: 0;
+    }
+    .season-panel{
+        left: 51vw;
+    }
+    
+  }
+
+  @media only screen and (max-width: 450px) {
+    
+    .grid-container{
+        margin-top: -400px;
+        width: 300px;
+        height: 300px;
+    }
+    .side{
+        top:50vh;
+        right: 43vw;
+        width: 53vw;
+        padding: 0;
+        margin: 0;
+    }
+    .season-panel{
+        left: 60vw;
+        width:35vw ;
+        
+    }
+    .season{
+        padding: 3px;
+    }
+    .section{
+        padding: 2px;
+    }
+    
+  }
+  

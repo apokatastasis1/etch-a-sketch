@@ -12,6 +12,7 @@ let isSingleColorActive = true;
 let wasGridModified = false;
 let isToggleGridActive = true;
 let isSeasonCOlorActive = false;
+let isButtonPressed = false;
 
 //Spring 0-7 Summer 8-15 Fall 16-23 WInter 24-31
 let colors = ["c6d7b9", "afd297", "88c5a1", "e0e293", "5e8d5a","f6b9ad","e1a18e","ee6f68", //spring
@@ -35,10 +36,10 @@ const rangeValue = document.querySelector(".range-value");
 const gridLinesBtn = document.querySelector(".toggle-grid");
 const saveBtn = document.querySelector(".save-image");
 const seasonsColors = document.querySelectorAll(".color");
+const buttons = document.querySelectorAll(".btn");
 
 
-
-
+console.log(gridContainer.offsetWidth);
 
 function toggleCustomGridLInes(){
     
@@ -87,16 +88,53 @@ lightBtn.addEventListener('click', activateLightMode);
 inputRange.addEventListener('change', customizeGrid);
 gridLinesBtn.addEventListener('click', toggleCustomGridLInes);
 
-//
+
+//Add event listeners to all button minus the clear, toggle grid and save button
+for(let i=1;i<buttons.length-2;i++){
+
+    buttons[i].addEventListener('click', colorPressButton);
+}
+
+
+//color the pressed button on the left pannel
+function colorPressButton(e){
+    if (isButtonPressed){
+        for(let i=1;i<buttons.length-2;i++){
+            buttons[i].classList.remove('pressed');
+        }
+        e.target.classList.toggle('pressed');
+        isButtonPressed = false;
+    }  else{
+        
+        e.target.classList.toggle('pressed');
+    }
+
+    isButtonPressed = true;
+
+}
+/*
+buttons.forEach(btn=>btn.addEventListener('click', (e)=>{
+    e.target.classList.toggle("pressed");
+}))
+*/
+
+console.log(gridContainer.offsetWidth);
+
+
+
+//Scale the selected season color and de-escale it when selecting another color.
 seasonsColors.forEach(color=> color.addEventListener('click', (e)=>{
     let colorPicked = document.querySelectorAll(".scale-color");
     if (isSeasonCOlorActive){
         colorPicked.forEach(color =>color.classList.toggle('scale-color'));
         e.target.classList.toggle('scale-color');
         isSeasonCOlorActive = false;
+        buttons.forEach(btn=>btn.classList.remove("pressed"));
+
     }  else{
-        console.log("entro");
+        
         e.target.classList.toggle('scale-color');
+        buttons.forEach(btn=>btn.classList.remove("pressed"));
     }
 
     isSeasonCOlorActive = true;
@@ -106,31 +144,29 @@ seasonsColors.forEach(color=> color.addEventListener('click', (e)=>{
 
 }));
 
-function scaleSeasonColors(e){
-    e.target.className.toggle("scale-color");
-    console.log(e.target.classList.toggle("scale-color"));
 
 
-    
-    console.log(e.target.className);
-    console.log(e);
-    console.log(e.target);
-    console.log(e.target.classList);
-    console.log(e.target.classList[1]=="test");
-    console.log(e.target.getAttribute('data-num'));
+//If you selected a season color and then press a button on the left panel, this will resize
+//the previously selected season color so it doesn't look like it's selected anymore
+
+function resizePickedColors(){
+    let pickedColor = document.querySelector(".scale-color");
+    if(pickedColor) pickedColor.classList.toggle('scale-color');
 }
 
-console.log(seasonsColors[1].getAttribute('data-num'))
 
 
+
+
+//Fill the season colors with the colors in the array
 //Spring 0-7 Summer 8-15 Fall 16-23 WInter 24-31
 
 for(let i=0;i<colors.length;i++){
-    console.log(colors[i]);
+    
     seasonsColors[i].style.backgroundColor = "#" + colors[i];
         
 }
-//seasonsColors[0].setAttribute('style', 'backgroundColor: red');
+
 
 
 
@@ -160,6 +196,8 @@ function activateRainbowMode(){
     isShadowActive = false;
     isLightActive = false;
     isSingleColorActive = false;
+    resizePickedColors();
+
     
 }
 function activateShadowMode(){
@@ -167,6 +205,7 @@ function activateShadowMode(){
     isShadowActive = true;
     isLightActive = false;
     isSingleColorActive = false;
+    resizePickedColors();
     
 }
 function activateLightMode(){
@@ -174,6 +213,7 @@ function activateLightMode(){
     isShadowActive = false;
     isLightActive = true;
     isSingleColorActive = false;
+    resizePickedColors();
 
     
 }
@@ -186,6 +226,7 @@ function singleColor(){
     isLightActive = false;
     activeColor = colorBackup;
     borderColor = colorBackup;
+    resizePickedColors();
 }
 
 
@@ -218,6 +259,7 @@ function erase(){
     isSingleColorActive = true;
     activeColor = "white";
     borderColor = "gainsboro";
+    resizePickedColors();
     //colorPicker.value = "#FFFFFF"
 }
 
@@ -245,7 +287,7 @@ function updateColor(e){
 
 function makeGrid(rows, columns){
     console.log(gridContainer.offsetWidth);
-    let cellWIdth = 544/rows; //grid container size(px) / number of rows
+    let cellWIdth = gridContainer.offsetWidth/rows; //grid container size(px) / number of rows
     gridContainer.style.gridTemplateColumns = `repeat(${columns}, ${cellWIdth}px)  `;
     gridContainer.style.gridTemplateRows = `repeat(${rows}, ${cellWIdth}px) `;
 
@@ -377,6 +419,9 @@ gridItems.forEach(elem=>{
 
 
 function customizeGrid(){
+
+    resizePickedColors();
+
     wasGridModified = true;
     
     gridSize = inputRange.value;
@@ -404,7 +449,7 @@ function customizeGrid(){
         newGridCells[i].style.borderBottom = "none";
     }
     
-     
+     //attach event listeners to the new cells
 
     newGridCells.forEach(elem=>{
         elem.addEventListener('mousedown', paintOnHover);
