@@ -193,23 +193,6 @@ label{
 }
 
 
-.right-side{
-    
-    position: relative;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    
-    height: 80vh;
-    width: 250px;
-    gap: 8px;
-    
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    background-color: #B2AABB;
-    
-}
-
 
 .section .centeredBtn{
     margin-left: auto;
@@ -401,29 +384,60 @@ label{
   }
 
   @media only screen and (max-width: 450px) {
-    
+   
     .grid-container{
         margin-top: -400px;
-        width: 300px;
-        height: 300px;
+        width: 390px;
+        height: 390px;
     }
     .side{
         top:50vh;
         right: 43vw;
         width: 53vw;
-        padding: 0;
+        padding: 8px 0 ;
         margin: 0;
+        height: 40vh;
     }
     .season-panel{
         left: 60vw;
         width:35vw ;
+        padding: 0;
+        height: 40vh;
         
     }
     .season{
         padding: 3px;
     }
+    
     .section{
-        padding: 2px;
+        height: 12px;
+    }
+    .season.section{
+        padding: 5px ;
+
+    }
+    .color{
+        width: 10px;
+        height: 10px;
+    }
+    .btn{
+        max-height: 25px;
+        font-size: 10px;
+        padding: 3px 5px;
+        
+        margin: auto;
+    }
+    
+    label{
+        font-size: 15px;
+    }
+
+    .range-slider{
+        gap: 4px;
+    }
+    #color-pick{
+        width: 20%;
+        height: 65%;
     }
     
   }
