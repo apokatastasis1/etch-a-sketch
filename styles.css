@@ -331,17 +331,17 @@ label{
   }
 
 
-  @media only screen and (max-width: 1069px) {
+  @media only screen and (max-width: 1023px) {
     
     .container{
         flex-direction: row;
-        
+        padding-top: 20px;
         position: relative;
         
     }
 
     .side{
-        top: 93vh;
+        top: 95vh;
         right: 52vw;
         position: absolute;
     }
@@ -351,27 +351,31 @@ label{
     
   }
   @media only screen and (max-width: 600px) {
-    
+    .container{
+        align-items: flex-start;
+        padding: 10px;
+        
+    }
     .grid-container{
-        margin-top: -180px;
+        /*margin-top: -180px;*/
         width: 450px;
         height: 450px;
     }
     .side{
-        top:70vh;
+        top:65%;
     }
     
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 540px) {
     
     .grid-container{
-        margin-top: -200px;
+       /* margin-top: -200px;*/
         width: 450px;
         height: 450px;
     }
     .side{
-        top:70vh;
+        top:73vh;
         right: 51vw;
         width: 45vw;
         padding: 0;
@@ -386,12 +390,12 @@ label{
   @media only screen and (max-width: 450px) {
    
     .grid-container{
-        margin-top: -350px;
-        width: 390px;
-        height: 390px;
+       /* margin-top: -350px;*/
+        width: 370px;
+        height: 370px;
     }
     .side{
-        top:50vh;
+        top:47vh;
         right: 43vw;
         width: 53vw;
         padding: 8px 0 ;
@@ -434,10 +438,10 @@ label{
     }
     
     label{
-        font-size: 10px;
+        font-size: 12px;
     }
     .range-value{
-        font-size: 10px;
+        font-size: 8px;
     }
     .range-container{
         justify-content: center;
@@ -449,6 +453,24 @@ label{
     #color-pick{
         width: 20%;
         height: 65%;
+    }
+
+    @media only screen and (max-width: 380px) {
+        .grid-container{
+            width: 300px;
+            height: 300px;
+        }
+        .side{
+            height: 52vh;
+            top: 50vh;
+        }
+        .range-value{
+            font-size: 8px;
+        }
+        .range-container{
+            padding-right: 0;
+        }
+
     }
     
   }

@@ -413,8 +413,7 @@ function customizeGrid(){
 
      //deletes bottom border
     for(let i=newGridCells.length-gridSize; i<newGridCells.length;i++){
-        console.log("hola");
-        console.log(newGridCells);
+        
         newGridCells[i].style.borderBottom = "none";
     }
     
