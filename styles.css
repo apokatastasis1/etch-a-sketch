@@ -436,6 +436,12 @@ label{
     label{
         font-size: 10px;
     }
+    .range-value{
+        font-size: 10px;
+    }
+    .range-container{
+        justify-content: center;
+    }
 
     .range-slider{
         gap: 4px;
