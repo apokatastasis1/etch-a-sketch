@@ -362,7 +362,7 @@ label{
         height: 450px;
     }
     .side{
-        top:65%;
+        top:68%;
     }
     
   }
@@ -375,7 +375,7 @@ label{
         height: 450px;
     }
     .side{
-        top:73vh;
+        top:75vh;
         right: 51vw;
         width: 45vw;
         padding: 0;
@@ -395,7 +395,7 @@ label{
         height: 370px;
     }
     .side{
-        top:47vh;
+        top:49vh;
         right: 43vw;
         width: 53vw;
         padding: 8px 0 ;
@@ -441,7 +441,7 @@ label{
         font-size: 12px;
     }
     .range-value{
-        font-size: 8px;
+        font-size: 10px;
     }
     .range-container{
         justify-content: center;
@@ -453,7 +453,14 @@ label{
     #color-pick{
         width: 20%;
         height: 65%;
+        
     }
+
+    .range-container{
+        padding-right: 0;
+    }
+}
+
 
     @media only screen and (max-width: 380px) {
         .grid-container{
@@ -462,7 +469,7 @@ label{
         }
         .side{
             height: 52vh;
-            top: 50vh;
+            top: 53vh;
         }
         .range-value{
             font-size: 8px;
@@ -473,5 +480,5 @@ label{
 
     }
     
-  }
+  
   
